@@ -1,0 +1,154 @@
+{
+  "name": "@fastcms/babel-preset",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Shared @babel preset for web development projects of @fastcms.",
+  "keywords": [
+    "babel",
+    "babel-preset",
+    "fastcms",
+    "transpiler"
+  ],
+  "homepage": "https://npm.im/@fastcms/babel-preset",
+  "bugs": {
+    "url": "https://github.com/fastcms/babel-preset/issues",
+    "email": "hello@fastcms.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fastcms/babel-preset"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Ritchie Zhu",
+    "email": "laozhu.me@gmail.com",
+    "url": "https://laozhu.me"
+  },
+  "contributors": [
+    {
+      "name": "Ritchie Zhu",
+      "email": "laozhu.me@gmail.com",
+      "url": "https://laozhu.me"
+    }
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "ci": "run-s prettier eslint test",
+    "commit": "git-cz",
+    "commit:dirty": "yarn run commit --no-verify",
+    "eslint": "eslint --cache --ext .js,.mjs,.jsx,.ts,.tsx,.md,.mdx .",
+    "eslint:fix": "eslint --cache --fix --ext .js,.mjs,.jsx,.ts,.tsx,.md,.mdx .",
+    "prepublishOnly": "yarn run ci",
+    "prettier": "prettier --check \"**/*.{json,html,md,mdx}\"",
+    "prettier:fix": "prettier --write \"**/*.{json,html,md,mdx}\"",
+    "test": "jest --cache --passWithNoTests"
+  },
+  "lint-staged": {
+    "**/*.{js,mjs,jsx,ts,tsx,md,mdx}": "yarn run eslint",
+    "**/*.{json,html,md,mdx}": "yarn run prettier"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "browserslist": [
+    "last 1 chrome version",
+    "last 1 edge version",
+    "last 1 firefox version",
+    "last 1 safari version",
+    "last 1 ios version",
+    "last 1 android version"
+  ],
+  "prettier": {
+    "printWidth": 100,
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "extends": "@fastcms",
+    "root": true
+  },
+  "eslintIgnore": [
+    "coverage",
+    "node_modules",
+    "__files__"
+  ],
+  "jest": {
+    "collectCoverage": true,
+    "roots": [
+      "<rootDir>"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "transform": {
+      "\\.tsx?$": "ts-jest",
+      "\\.jsx?$": "babel-jest"
+    },
+    "verbose": true
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.14.5",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.14.5",
+    "@babel/plugin-proposal-numeric-separator": "^7.14.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
+    "@babel/plugin-proposal-private-methods": "^7.14.5",
+    "@babel/plugin-syntax-top-level-await": "^7.14.5",
+    "@babel/plugin-transform-react-constant-elements": "^7.14.5",
+    "@babel/plugin-transform-react-inline-elements": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
+    "babel-plugin-import": "^1.13.3",
+    "babel-plugin-macros": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/runtime": "^7.14.6",
+    "@babel/runtime-corejs3": "^7.14.7",
+    "@fastcms/eslint-config": "^1.5.7",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.0.1",
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "babel-jest": "^27.0.6",
+    "commitizen": "^4.2.4",
+    "core-js": "^3.15.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.30.0",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2",
+    "prettier-plugin-packagejson": "^2.2.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/runtime": "^7.14.6",
+    "@babel/runtime-corejs3": "^7.14.7",
+    "core-js": "^3.15.2"
+  },
+  "engines": {
+    "node": ">=14.17.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org",
+    "tag": "latest"
+  }
+}
