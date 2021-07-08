@@ -1,6 +1,6 @@
 {
   "name": "@fastcms/babel-preset",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "Shared @babel preset for web development projects of @fastcms.",
   "keywords": [
@@ -31,7 +31,9 @@
       "url": "https://laozhu.me"
     }
   ],
+  "sideEffects": false,
   "main": "index.js",
+  "module": "index.js",
   "files": [
     "index.js"
   ],

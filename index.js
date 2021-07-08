@@ -3,16 +3,16 @@ const { declare } = require('@babel/helper-plugin-utils');
 
 // Default options for babel preset
 const defaultOptions = {
-  node: false,
-  debug: false,
-  react: false,
-  typescript: false,
-  antd: false,
-  mui: false,
-  corejs: false, // false | 2 | 3
-  useESModules: false,
-  transformRuntime: true,
   alias: false,
+  antd: false,
+  corejs: false,
+  debug: false,
+  mui: false,
+  node: false,
+  react: false,
+  transformRuntime: true,
+  typescript: false,
+  useESModules: false,
 };
 
 // Default options for @babel/preset-env
@@ -47,17 +47,17 @@ module.exports = declare((api, options = defaultOptions) => {
   const env = process.env.BABEL_ENV ?? process.env.NODE_ENV ?? 'production';
   const isDev = env === 'development';
   const {
-    targets,
-    node,
-    debug,
-    react,
-    typescript,
-    antd,
-    mui,
-    corejs,
-    useESModules,
-    transformRuntime,
     alias,
+    antd,
+    corejs,
+    debug,
+    mui,
+    node,
+    react,
+    targets,
+    transformRuntime,
+    typescript,
+    useESModules,
   } = options;
 
   api.assertVersion('^7.13.0');
@@ -68,7 +68,10 @@ module.exports = declare((api, options = defaultOptions) => {
   }
 
   if (node) {
-    defaultOptionsForPresetEnv.targets = 'current';
+    defaultOptionsForPresetEnv.ignoreBrowserslistConfig = true;
+    defaultOptionsForPresetEnv.targets = {
+      node: 'current',
+    };
   }
 
   if (debug) {
@@ -98,7 +101,7 @@ module.exports = declare((api, options = defaultOptions) => {
     [require('@babel/plugin-proposal-optional-chaining').default, { loose: true }],
     [require('@babel/plugin-proposal-private-methods').default, { loose: true }],
     [require('@babel/plugin-syntax-top-level-await').default, {}],
-    [require('babel-plugin-macros').default, {}],
+    [require('babel-plugin-macros'), {}],
     [
       require('babel-plugin-import').default,
       {
