@@ -1,6 +1,6 @@
 {
   "name": "@fastcms/babel-preset",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "Shared @babel preset for web development projects of @fastcms.",
   "keywords": [
@@ -124,7 +124,7 @@
     "@babel/core": "^7.14.6",
     "@babel/runtime": "^7.14.6",
     "@babel/runtime-corejs3": "^7.14.7",
-    "@fastcms/eslint-config": "^1.5.7",
+    "@fastcms/eslint-config": "^1.5.8",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.2",
     "@types/react": "^17.0.14",
