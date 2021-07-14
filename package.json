@@ -38,6 +38,8 @@
     "index.js"
   ],
   "scripts": {
+    "dev": "babel __files__ -w -d dist -x .js,.mjs,.jsx,.ts,.tsx",
+    "build": "babel __files__ -d dist -x .js,.mjs,.jsx,.ts,.tsx",
     "ci": "run-s prettier eslint test",
     "commit": "git-cz",
     "commit:dirty": "yarn run commit --no-verify",
@@ -72,11 +74,14 @@
     "trailingComma": "all"
   },
   "eslintConfig": {
-    "extends": "@fastcms",
+    "extends": [
+      "@fastcms"
+    ],
     "root": true
   },
   "eslintIgnore": [
     "coverage",
+    "dist",
     "node_modules",
     "__files__"
   ],
@@ -111,7 +116,8 @@
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
     "babel-plugin-import": "^1.13.3",
-    "babel-plugin-macros": "^3.1.0"
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-module-resolver": "^4.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
@@ -120,7 +126,7 @@
     "@babel/runtime-corejs3": "^7.14.7",
     "@fastcms/eslint-config": "^1.5.7",
     "@types/jest": "^26.0.24",
-    "@types/node": "^16.0.1",
+    "@types/node": "^16.3.2",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "babel-jest": "^27.0.6",
@@ -130,7 +136,7 @@
     "eslint": "^7.30.0",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
-    "lint-staged": "^11.0.0",
+    "lint-staged": "^11.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
     "prettier-plugin-packagejson": "^2.2.11",

@@ -1,0 +1,13 @@
+{
+  "ignore": ["**/*.d.ts"],
+  "presets": [
+    [
+      "./index.js",
+      {
+        "alias": true,
+        "node": true,
+        "typescript": true
+      }
+    ]
+  ]
+}
