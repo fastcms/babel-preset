@@ -1,6 +1,6 @@
 {
   "name": "@fastcms/babel-preset",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "description": "Shared @babel preset for web development projects of @fastcms.",
   "keywords": [
@@ -80,10 +80,11 @@
     "root": true
   },
   "eslintIgnore": [
-    "coverage",
-    "dist",
-    "node_modules",
-    "__files__"
+    "**/*.js",
+    "/coverage",
+    "/dist",
+    "/node_modules",
+    "/__files__"
   ],
   "jest": {
     "collectCoverage": true,

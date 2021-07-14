@@ -1,4 +1,6 @@
-coverage
-dist
-node_modules
-__files__
+**/*.js
+
+/coverage
+/dist
+/node_modules
+/__files__
