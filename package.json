@@ -1,6 +1,6 @@
 {
   "name": "@fastcms/babel-preset",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "Shared @babel preset for web development projects of @fastcms.",
   "keywords": [

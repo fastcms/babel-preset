@@ -13,7 +13,6 @@ const defaultOptions = {
   transformRuntime: true,
   typescript: false,
   useESModules: false,
-  exclude: ['**/+(tests|__tests__)/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
 };
 
 // Default options for @babel/preset-env
@@ -59,7 +58,6 @@ module.exports = declare((api, options = defaultOptions) => {
     transformRuntime,
     typescript,
     useESModules,
-    exclude,
   } = options;
 
   api.assertVersion('^7.13.0');
@@ -257,7 +255,25 @@ module.exports = declare((api, options = defaultOptions) => {
       {
         root: ['.'],
         alias: {
-          '@/': './src/',
+          '@/app': './src/app.ts',
+          '@/assets': './src/assets',
+          '@/components': './src/components',
+          '@/configs': './src/configs',
+          '@/constants': './src/constants',
+          '@/helpers': './src/helpers',
+          '@/interfaces': './src/interfaces',
+          '@/layouts': './src/layouts',
+          '@/locales': './src/locales',
+          '@/models': './src/models',
+          '@/pages': './src/pages',
+          '@/plugins': './src/plugins',
+          '@/routes': './src/routes',
+          '@/schema': './src/schema',
+          '@/schemas': './src/schemas',
+          '@/services': './src/services',
+          '@/server': './src/server.ts',
+          '@/types': './src/types',
+          '@/utils': './src/utils',
         },
       },
     ]);
@@ -267,6 +283,5 @@ module.exports = declare((api, options = defaultOptions) => {
     presets,
     plugins,
     sourceMaps: isDev ? 'inline' : true,
-    exclude,
   };
 });
