@@ -1,6 +1,6 @@
 {
   "name": "@fastcms/babel-preset",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "private": false,
   "description": "Shared @babel preset for web development projects of @fastcms.",
   "keywords": [
@@ -31,32 +31,32 @@
       "url": "https://laozhu.me"
     }
   ],
-  "sideEffects": false,
   "main": "index.js",
-  "module": "index.js",
   "files": [
     "index.js"
   ],
   "scripts": {
-    "dev": "babel __files__ -w -d dist -x .js,.mjs,.jsx,.ts,.tsx",
-    "build": "babel __files__ -d dist -x .js,.mjs,.jsx,.ts,.tsx",
-    "ci": "run-s prettier eslint test",
+    "build": "babel __files__ -d dist -x .js,.cjs,.mjs,.jsx,.ts,.tsx",
+    "ci": "run-s prettier eslint test:ci",
+    "clean": "rimraf .DS_Store .eslintcache coverage dist",
     "commit": "git-cz",
-    "commit:dirty": "yarn run commit --no-verify",
-    "eslint": "eslint --cache --ext .js,.mjs,.jsx,.ts,.tsx,.md,.mdx .",
-    "eslint:fix": "eslint --cache --fix --ext .js,.mjs,.jsx,.ts,.tsx,.md,.mdx .",
+    "commit:dirty": "git-cz --no-verify",
+    "dev": "babel __files__ -w -d dist -x .js,.cjs,.mjs,.jsx,.ts,.tsx",
+    "eslint": "eslint --cache --ext .js,.cjs,.mjs,.jsx,.ts,.tsx,.md,.mdx .",
+    "eslint:fix": "eslint --cache --fix --ext .js,.cjs,.mjs,.jsx,.ts,.tsx,.md,.mdx .",
     "prepublishOnly": "yarn run ci",
     "prettier": "prettier --check \"**/*.{json,html,md,mdx}\"",
     "prettier:fix": "prettier --write \"**/*.{json,html,md,mdx}\"",
-    "test": "jest --cache --passWithNoTests"
+    "test": "jest --cache --passWithNoTests  --watch",
+    "test:ci": "jest --ci --passWithNoTests"
   },
   "lint-staged": {
-    "**/*.{js,mjs,jsx,ts,tsx,md,mdx}": "yarn run eslint",
+    "**/*.{js,cjs,mjs,jsx,ts,tsx,md,mdx}": "yarn run eslint",
     "**/*.{json,html,md,mdx}": "yarn run prettier"
   },
   "config": {
     "commitizen": {
-      "path": "cz-conventional-changelog"
+      "path": "cz-emoji"
     }
   },
   "browserslist": [
@@ -74,20 +74,24 @@
     "trailingComma": "all"
   },
   "eslintConfig": {
-    "extends": [
-      "@fastcms"
-    ],
+    "extends": "@fastcms",
     "root": true
   },
   "eslintIgnore": [
-    "**/*.js",
-    "/coverage",
-    "/dist",
-    "/node_modules",
-    "/__files__"
+    "__files__",
+    "coverage",
+    "dist",
+    "node_modules"
   ],
   "jest": {
     "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/*.d.ts",
+      "!__files__/**",
+      "!coverage/**",
+      "!node_modules/**"
+    ],
     "roots": [
       "<rootDir>"
     ],
@@ -96,14 +100,14 @@
       "**/?(*.)+(spec|test).[jt]s?(x)"
     ],
     "transform": {
-      "\\.tsx?$": "ts-jest",
-      "\\.jsx?$": "babel-jest"
+      "^.+\\.[jt]sx?$": "@swc/jest"
     },
     "verbose": true
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/plugin-proposal-class-static-block": "^7.15.4",
+    "@babel/plugin-proposal-decorators": "^7.15.8",
     "@babel/plugin-proposal-logical-assignment-operators": "^7.14.5",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.14.5",
     "@babel/plugin-proposal-numeric-separator": "^7.14.5",
@@ -112,48 +116,47 @@
     "@babel/plugin-syntax-top-level-await": "^7.14.5",
     "@babel/plugin-transform-react-constant-elements": "^7.14.5",
     "@babel/plugin-transform-react-inline-elements": "^7.14.5",
-    "@babel/plugin-transform-runtime": "^7.14.5",
-    "@babel/preset-env": "^7.14.7",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-module-resolver": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.5",
-    "@babel/core": "^7.14.6",
-    "@babel/runtime": "^7.14.6",
-    "@babel/runtime-corejs3": "^7.14.7",
-    "@fastcms/eslint-config": "^1.5.8",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^16.3.2",
-    "@types/react": "^17.0.14",
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/runtime": "^7.15.4",
+    "@fastcms/eslint-config": "^1.7.5",
+    "@swc/core": "^1.2.101",
+    "@swc/jest": "^0.2.5",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.1",
+    "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
-    "babel-jest": "^27.0.6",
     "commitizen": "^4.2.4",
-    "core-js": "^3.15.2",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.30.0",
-    "husky": "^7.0.1",
-    "jest": "^27.0.6",
-    "lint-staged": "^11.0.1",
+    "core-js": "^3.18.3",
+    "cz-emoji": "^1.3.1",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.2",
+    "jest": "^27.3.1",
+    "lint-staged": "^11.2.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.3.2",
-    "prettier-plugin-packagejson": "^2.2.11",
+    "prettier": "^2.4.1",
+    "prettier-plugin-packagejson": "^2.2.13",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "ts-jest": "^27.0.3",
-    "typescript": "^4.3.5"
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/runtime": "^7.14.6",
-    "@babel/runtime-corejs3": "^7.14.7",
-    "core-js": "^3.15.2"
+    "@babel/core": "^7.15.8",
+    "@babel/runtime": "^7.15.4",
+    "core-js": "^3.18.3"
   },
   "engines": {
-    "node": ">=14.17.3"
+    "node": ">=16"
   },
   "publishConfig": {
     "access": "public",

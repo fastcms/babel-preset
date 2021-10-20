@@ -1,4 +1,5 @@
 const path = require('path');
+const { peerDependencies } = require('./package.json');
 const { declare } = require('@babel/helper-plugin-utils');
 
 // Default options for babel preset
@@ -60,7 +61,7 @@ module.exports = declare((api, options = defaultOptions) => {
     useESModules,
   } = options;
 
-  api.assertVersion('^7.13.0');
+  api.assertVersion(peerDependencies['@babel/core']);
   api.cache.using(() => isDev);
 
   if (targets) {
@@ -94,6 +95,7 @@ module.exports = declare((api, options = defaultOptions) => {
   // Initial babel plugins
   const plugins = [
     [require('@babel/plugin-proposal-decorators').default, { legacy: true }],
+    [require('@babel/plugin-proposal-class-static-block').default, {}],
     [require('@babel/plugin-proposal-class-properties').default, { loose: true }],
     [require('@babel/plugin-proposal-logical-assignment-operators').default, {}],
     [require('@babel/plugin-proposal-nullish-coalescing-operator').default, { loose: true }],
@@ -149,8 +151,8 @@ module.exports = declare((api, options = defaultOptions) => {
           [
             require('babel-plugin-import').default,
             {
-              libraryName: '@material-ui/core',
-              libraryDirectory: 'esm',
+              libraryName: '@mui/core',
+              libraryDirectory: 'modern',
               camel2DashComponentName: false,
             },
             'mui-core',
@@ -158,26 +160,26 @@ module.exports = declare((api, options = defaultOptions) => {
           [
             require('babel-plugin-import').default,
             {
-              libraryName: '@material-ui/icons',
+              libraryName: '@mui/icons-material',
               libraryDirectory: 'esm',
               camel2DashComponentName: false,
             },
-            'mui-icons',
+            'mui-icons-material',
           ],
           [
             require('babel-plugin-import').default,
             {
-              libraryName: '@material-ui/lab',
-              libraryDirectory: 'esm',
+              libraryName: '@mui/material',
+              libraryDirectory: 'modern',
               camel2DashComponentName: false,
             },
-            'mui-lab',
+            'mui-material',
           ],
           [
             require('babel-plugin-import').default,
             {
-              libraryName: '@material-ui/styles',
-              libraryDirectory: 'esm',
+              libraryName: '@mui/styles',
+              libraryDirectory: 'modern',
               camel2DashComponentName: false,
             },
             'mui-styles',
@@ -185,8 +187,8 @@ module.exports = declare((api, options = defaultOptions) => {
           [
             require('babel-plugin-import').default,
             {
-              libraryName: '@material-ui/system',
-              libraryDirectory: 'esm',
+              libraryName: '@mui/system',
+              libraryDirectory: 'modern',
               camel2DashComponentName: false,
             },
             'mui-system',
@@ -194,8 +196,8 @@ module.exports = declare((api, options = defaultOptions) => {
           [
             require('babel-plugin-import').default,
             {
-              libraryName: '@material-ui/utils',
-              libraryDirectory: 'esm',
+              libraryName: '@mui/utils',
+              libraryDirectory: 'modern',
               camel2DashComponentName: false,
             },
             'mui-utils',
@@ -229,6 +231,7 @@ module.exports = declare((api, options = defaultOptions) => {
         allowNamespaces: true,
         allowDeclareFields: true,
         onlyRemoveTypeImports: true,
+        optimizeConstEnums: true,
       },
     ]);
   }
@@ -254,27 +257,7 @@ module.exports = declare((api, options = defaultOptions) => {
       require('babel-plugin-module-resolver').default,
       {
         root: ['.'],
-        alias: {
-          '@/app': './src/app.ts',
-          '@/assets': './src/assets',
-          '@/components': './src/components',
-          '@/configs': './src/configs',
-          '@/constants': './src/constants',
-          '@/helpers': './src/helpers',
-          '@/interfaces': './src/interfaces',
-          '@/layouts': './src/layouts',
-          '@/locales': './src/locales',
-          '@/models': './src/models',
-          '@/pages': './src/pages',
-          '@/plugins': './src/plugins',
-          '@/routes': './src/routes',
-          '@/schema': './src/schema',
-          '@/schemas': './src/schemas',
-          '@/services': './src/services',
-          '@/server': './src/server.ts',
-          '@/types': './src/types',
-          '@/utils': './src/utils',
-        },
+        alias,
       },
     ]);
   }
