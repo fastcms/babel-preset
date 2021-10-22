@@ -8,9 +8,11 @@ const defaultOptions = {
   antd: false,
   corejs: false,
   debug: false,
+  emotion: false,
   mui: false,
   node: false,
   react: false,
+  styledComponents: false,
   transformRuntime: true,
   typescript: false,
   useESModules: false,
@@ -52,9 +54,11 @@ module.exports = declare((api, options = defaultOptions) => {
     antd,
     corejs,
     debug,
+    emotion,
     mui,
     node,
     react,
+    styledComponents,
     targets,
     transformRuntime,
     typescript,
@@ -260,6 +264,14 @@ module.exports = declare((api, options = defaultOptions) => {
         alias,
       },
     ]);
+  }
+
+  if (emotion) {
+    plugins.push([require('@emotion/babel-plugin').default, { ...emotion }]);
+  }
+
+  if (styledComponents) {
+    plugins.push([require('babel-plugin-styled-components').default, { ...styledComponents }]);
   }
 
   return {
