@@ -1,6 +1,6 @@
 {
   "name": "@fastcms/babel-preset",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": false,
   "description": "Shared @babel preset for web development projects of @fastcms.",
   "keywords": [
@@ -138,20 +138,20 @@
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.8",
     "@babel/runtime": "^7.15.4",
-    "@fastcms/eslint-config": "^1.8.2",
-    "@swc/core": "^1.2.102",
+    "@fastcms/eslint-config": "^1.8.3",
+    "@swc/core": "^1.2.103",
     "@swc/jest": "^0.2.5",
     "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.3",
-    "@types/react": "^17.0.31",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "commitizen": "^4.2.4",
-    "core-js": "^3.18.3",
+    "core-js": "^3.19.0",
     "cz-emoji": "^1.3.1",
     "eslint": "^7.32.0",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
-    "lint-staged": "^11.2.3",
+    "lint-staged": "^11.2.6",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.4.1",
     "prettier-plugin-packagejson": "^2.2.13",
@@ -164,7 +164,7 @@
   "peerDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/runtime": "^7.15.4",
-    "core-js": "^3.18.3"
+    "core-js": "^3.19.0"
   },
   "optionalDependencies": {
     "styled-components": "^5.3.3"
