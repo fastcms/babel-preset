@@ -1,8 +1,10 @@
-# babel-preset
+# [DEPRECATED] babel-preset
 
 ![NPM Package Version](https://img.shields.io/npm/v/@fastcms/babel-preset) ![Peer Babel Core Version](https://img.shields.io/npm/dependency-version/@fastcms/babel-preset/peer/@babel/core) ![Node.js Version](https://img.shields.io/node/v/@fastcms/babel-preset) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) ![NPM Weekly Downloads](https://img.shields.io/npm/dw/@fastcms/babel-preset) ![GitHub CI Workflow](https://github.com/fastcms/babel-preset/actions/workflows/main.yml/badge.svg)
 
 > Shared @babel preset for web development projects of @fastcms.
+
+**Go to <https://github.com/fastcms/fastcms/tree/master/tools/babel-preset> for latest version.**
 
 This shared babel preset can be used for transpiling modern JavaScript projects, it can also be used for React or TypeScript projects.
 
